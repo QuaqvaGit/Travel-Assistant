@@ -1,0 +1,45 @@
+﻿@model TravelAssistant_.Models.CityViewModel
+
+<div class="modal fade" id="details-city" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+                <h5 class="modal-title" id="Title">@ViewBag.PageName</h5>
+            </div>
+            <div class="modal-body">
+                <hr />
+                <form asp-action="Details">
+                    <dl class="row">
+                        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Id)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Id)</dd>
+                        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Name)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
+                        @if (Model.Sights!="")
+                        {
+                            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Sights)</dt>
+                            <dd class="col-sm-9">@Html.DisplayFor(model => model.Sights)</dd>
+                        }
+                        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.RegionFullDesc)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.RegionFullDesc)</dd>
+                    </dl>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="input-row">
+                    <button type="button" class="btn btn-primary btn-endrow"
+                            data-toggle="ajax-modal" data-target="#add-city" 
+                            data-url="@Url.Action("AddOrEdit",new {@id = Model.Id})">Редактировать</button>
+                    <button class="btn btn-danger" data-bs-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

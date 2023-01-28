@@ -1,0 +1,58 @@
+﻿@model TravelAssistant_.Models.HomeViewModel
+
+@{
+    ViewData["Title"] = "Главная";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Добро пожаловать</h1>
+    <p>Подготовка к построению маршрута:</p>
+    @using(Html.BeginForm("Process"))
+    {
+        <div class="wrapper">
+        <p>Выберите пункты:</p>
+        @for(int i = 1; i<=2;i++)
+        {
+            string selectId = i==1?"selectDeparture":"selectDestination";
+            string header = i == 1 ? "Отправления" : "Назначения";
+            string radioName = $"city{i}";
+                <p>@header</p>
+
+            <div class="NestedSelect" id="@selectId">
+                @foreach(var countryOpt in ViewBag.Options)
+                {
+                    <label><span>@countryOpt.Item1</span></label>
+                    <div>
+                    @foreach(var regionOpt in countryOpt.Item2)
+                    {
+                            string labelName1 = $"  {regionOpt.Item1}";
+                            <label><span>@labelName1</span></label>
+                            <div>
+                            @foreach(var cityOpt in regionOpt.Item2) {
+                                string labelName2 = $"      {cityOpt}";
+                                <label style="{cursor:pointer} :hover:{background=blue}"><input type="radio" asp-for=Departure value=@labelName2 name=@radioName><span>@labelName2</span></label>
+                            }
+                            </div>
+                    }
+                    </div>
+                }
+            </div>
+        }
+        </div>
+        <div class="wrapper">
+            <p>Заполните важность критериев:</p>
+            @foreach (TravelAssistant_.Models.Criterias criteria in Enum.GetValues(typeof(TravelAssistant_.Models.Criterias)))
+            {
+                <p>@criteria.GetDisplayName()
+                    @Html.DropDownList(criteria.GetDisplayName(),Html.GetEnumSelectList(typeof(TravelAssistant_.Models.Values)),"",
+                    new {@id = criteria.ToString()})
+                </p>
+            }
+            <p>Билеты валидны до:
+                @Html.TextBoxFor(model => model.TicketsValidTill, new {@class = "input-field"})
+                @Html.ValidationMessageFor(model => model.TicketsValidTill)
+            </p>
+        </div>
+        <input type = "submit" id="home-submit" onclick="gatherData"/>
+    }
+</div>

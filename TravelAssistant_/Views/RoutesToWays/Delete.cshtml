@@ -1,0 +1,34 @@
+﻿@model TravelAssistant_.Models.RouteToWayViewModel
+
+<div class="modal fade" id="delete-routeToWay" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Title">@ViewBag.PageName</h5>
+            </div>
+            <div class="modal-body">
+                <hr />
+                <form asp-action="Delete">
+                    <dl class="row">
+                        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Way)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Way)</dd>
+                        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Route)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Route)</dd>
+                    </dl>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="input-row">
+                    <button class="btn btn-danger btn-endrow" data-delete="modal">Удалить</button>
+                    <button class="btn btn-primary" data-bs-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }

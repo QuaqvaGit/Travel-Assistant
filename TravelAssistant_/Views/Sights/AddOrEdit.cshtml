@@ -1,0 +1,66 @@
+﻿@model TravelAssistant_.Models.SightViewModel
+
+<div class="modal fade" id="add-sight" tabindex="-1" role="dialog" aria-labelledby="AddOrEditLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Title">@ViewBag.PageName</h5>
+            </div>
+            <div class="modal-body">
+                <hr />
+                <form asp-action="AddOrEdit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()"/>
+                    @if (@ViewBag.IsEdit)
+                    {
+                        Html.HiddenFor(model => model.Id);
+                    }
+                    @Html.HiddenFor(model => model.CityName)
+
+                    <div class="input-row">
+                        @Html.LabelFor(model => model.CityId)
+                        @Html.TextBoxFor(model => model.CityId, new {@class = "input-field"})
+                        @Html.ValidationMessageFor(model => model.CityId)
+                    </div>
+                    
+
+                    <div class="input-row">
+                        @Html.LabelFor(model => model.Name)
+                        @Html.TextBoxFor(model => model.Name, new {@class = "input-field"})
+                        @Html.ValidationMessageFor(model => model.Name)
+                    </div>
+
+                    <div class="input-row">
+                        @Html.LabelFor(model => model.Description)
+                        @Html.TextBoxFor(model => model.Description, new {@class = "input-field"})
+                        @Html.ValidationMessageFor(model => model.Description)
+                    </div>
+
+                    <div class="input-row">
+                        @Html.LabelFor(model => model.OpenFrom)
+                        @Html.TextBoxFor(model => model.OpenFrom, new {@class = "input-field"})
+                        @Html.ValidationMessageFor(model => model.OpenFrom)
+                    </div>
+
+                    <div class="input-row">
+                        @Html.LabelFor(model => model.OpenTill)
+                        @Html.TextBoxFor(model => model.OpenTill, new {@class = "input-field"})
+                        @Html.ValidationMessageFor(model => model.OpenTill)
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="input-row">
+                    <button class="btn btn-success btn-endrow" data-save="modal">Сохранить</button>
+                    <button class="btn btn-danger" data-bs-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }

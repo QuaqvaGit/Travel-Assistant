@@ -1,0 +1,94 @@
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #5c5c5c;
+    color: whitesmoke;
+}
+
+h1 {
+    text-align: center;
+}
+
+.input-row {
+    max-width: 80%;
+    display: flex;
+    align-items:center;
+    justify-content: flex-end;
+}
+
+.input-field {
+    margin-left: 1em;
+    padding: .5em;
+    margin-bottom: .5em;
+    background-color: white;
+}
+
+.btn-endrow {
+    margin: 0 15px;
+}
+
+.wrapper {
+    color: black;
+    background-color: whitesmoke;
+    margin: 16px auto;
+    border: 3px solid green;
+    padding: 15px;
+}
+
+.modal-content {
+    color: black;
+    border: 3px solid rosybrown;
+    background-color: whitesmoke;
+}
+
+
+.NestedSelect {
+    display: inline-block;
+    height: 100px;
+    background-color:whitesmoke;
+    border: 1px Black solid;
+    overflow-y: scroll;
+    margin: 20px;
+}
+
+.NestedSelect label {
+    display: block;
+    text-align:start;
+    color:black;
+}
+
+
+.NestedSelect input[type="radio"] {
+display: none;
+    }
+
+.NestedSelect input[type="radio"] + span {
+    display: block;
+    padding-left: 0px;
+    padding-right: 5px;
+}
+
+.NestedSelect input[type="radio"]:checked + span {
+    background-color: Black;
+    color: White;
+}
+
+.NestedSelect div {
+margin-left: 15px;
+border-left: 1px black solid;
+    }
+
+.NestedSelect label > span:before {
+content: '- ';
+    }

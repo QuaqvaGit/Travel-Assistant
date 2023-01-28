@@ -1,0 +1,37 @@
+﻿@model IEnumerable<TravelAssistant_.Models.RouteViewModel>
+<table class="table" data-url="@Url.Action("Index")" id = "elements">
+    <thead>
+    <tr style="text-align: center">
+        <th scope = "col">@Html.DisplayNameFor(model=>model.Id)</th>
+        <th scope="col">@Html.DisplayNameFor(model => model.DepartureName)</th>
+        <th scope="col">@Html.DisplayNameFor(model => model.DestinationName)</th>
+        <th></th><th></th><th scope = "col">Действия</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr style="text-align: center">
+            <th scope="row">@Html.DisplayFor(modelItem => item.Id)</th>
+            <td>@Html.DisplayFor(modelItem => item.DepartureName)</td>
+            <td>@Html.DisplayFor(modelItem => item.DestinationName)</td>
+            <td>
+            <td class="text-center">
+                <button type="button" class="btn btn-outline-primary btn-sm" 
+                        data-toggle="ajax-modal" data-target="#add-route" data-url="@Url.Action("AddOrEdit",new {@id = item.Id})">Редактировать</button>
+            </td>
+            <td class="text-center">
+                <button type="button" class="btn btn-outline-info btn-sm"
+                        data-toggle="ajax-modal" data-target="#details-route" 
+                        data-url="@Url.Action("Details","Routes",new {@id = item.Id})">Подробности</button>
+            </td>
+            <td class="text-center">
+                <button type="button" class="btn btn-outline-danger btn-sm"
+                        data-toggle="ajax-modal" data-target="#delete-route" 
+                        data-url="@Url.Action("Delete","Routes",new {@id = item.Id})">Удалить</button>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

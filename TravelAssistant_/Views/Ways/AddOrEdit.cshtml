@@ -1,0 +1,65 @@
+﻿@model TravelAssistant_.Models.Way
+
+<div class="modal fade" id="add-way" tabindex="-1" role="dialog" aria-labelledby="AddOrEditLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Title">@ViewBag.PageName</h5>
+            </div>
+            <div class="modal-body">
+                <hr />
+                <form asp-action="AddOrEdit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()"/>
+                    @if (@ViewBag.IsEdit)
+                    {
+                        Html.HiddenFor(model => model.Id);
+                    }
+
+                    <div class="input-row">
+                        @Html.LabelFor(model => model.way)
+                        @Html.TextBoxFor(model => model.way, new {@class = "input-field"})
+                        @Html.ValidationMessageFor(model => model.way)
+                    </div>
+                    <div class="input-row">
+                        @Html.LabelFor(model => model.Length)
+                        @Html.TextBoxFor(model => model.Length, new {@class = "input-field"})
+                        @Html.ValidationMessageFor(model => model.Length)
+                    </div>
+                    <div class="input-row">
+                        @Html.LabelFor(model => model.Price)
+                        @Html.TextBoxFor(model => model.Price, new {@class = "input-field"})
+                        @Html.ValidationMessageFor(model => model.Price)
+                    </div>
+                    <div class="input-row">
+                        @Html.LabelFor(model => model.Time)
+                        @Html.TextBoxFor(model => model.Time, new {@class = "input-field"})
+                        @Html.ValidationMessageFor(model => model.Time)
+                    </div>
+                    <div class="input-row">
+                        @Html.LabelFor(model => model.ValidFrom)
+                        @Html.TextBoxFor(model => model.ValidFrom, new {@class = "input-field"})
+                        @Html.ValidationMessageFor(model => model.ValidFrom)
+                    </div>
+                    <div class="input-row">
+                        @Html.LabelFor(model => model.ValidTill)
+                        @Html.TextBoxFor(model => model.ValidTill, new {@class = "input-field"})
+                        @Html.ValidationMessageFor(model => model.ValidTill)
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="input-row">
+                    <button class="btn btn-success btn-endrow" data-save="modal">Сохранить</button>
+                    <button class="btn btn-danger" data-bs-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }

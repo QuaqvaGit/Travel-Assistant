@@ -1,0 +1,49 @@
+﻿@model TravelAssistant_.Models.RouteToWayViewModel
+
+<div class="modal fade" id="add-routeToWay" tabindex="-1" role="dialog" aria-labelledby="AddOrEditLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Title">@ViewBag.PageName</h5>
+            </div>
+            <div class="modal-body">
+                <hr />
+                <form asp-action="AddOrEdit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()"/>
+                    @if (@ViewBag.IsEdit)
+                    {
+                        Html.HiddenFor(model => model.Id);
+                    }
+                    @Html.HiddenFor(model => model.Way)
+                    @Html.HiddenFor(model => model.Route)
+
+                    <div class="input-row">
+                        @Html.LabelFor(model => model.WayId)
+                        @Html.TextBoxFor(model => model.WayId, new {@class = "input-field"})
+                        @Html.ValidationMessageFor(model => model.WayId)
+                    </div>
+                    
+
+                    <div class="input-row">
+                        @Html.LabelFor(model => model.RouteId)
+                        @Html.TextBoxFor(model => model.RouteId, new {@class = "input-field"})
+                        @Html.ValidationMessageFor(model => model.RouteId)
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="input-row">
+                    <button class="btn btn-success btn-endrow" data-save="modal">Сохранить</button>
+                    <button class="btn btn-danger" data-bs-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }

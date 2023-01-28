@@ -1,0 +1,20 @@
+﻿@model IEnumerable<TravelAssistant_.Models.Country>
+
+@{
+    ViewData["Title"] = "Страны";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>@ViewBag.PageName</h1>
+<div id="modal-placeholder"></div>
+<div class="wrapper" >
+    <p style="text-align: right; margin-right: 20px;">
+        <button type="button" class="btn btn-outline-primary btn-sm" 
+                data-toggle="ajax-modal" data-target="#add-country" data-url="@Url.Action("Add")">Добавить</button>
+    </p>
+    <div class="table-responsive">
+        @await Html.PartialAsync("TablePartial",Model)
+    </div>
+</div>
+@section scripts
+{
+}
